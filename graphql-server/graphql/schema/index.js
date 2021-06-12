@@ -1,19 +1,13 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  type Subscription {
-    locationChanged(droneId: String!): Location
-  }
 
   type Query {
-    locations(droneId: String!): [Location]
+    exchangeRate(fromCurrency: String!, targetCurrency: String!): Rate
   }
 
-  type Location {
-    id: String!
-    latitude: String
-    longitude: String
-    altitude: String
+  type Rate {
+    rate: String
   }
 `;
 

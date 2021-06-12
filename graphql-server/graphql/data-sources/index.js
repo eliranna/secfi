@@ -1,8 +1,8 @@
-const LocationsAPI = require("../../services/locations.js");
+const alphavantageAPI = require("../../services/alphavantageAPI.js");
 
 const dataSources = () => {
   return {
-    locationsAPI: new LocationsAPI(),
+    alphavantageAPI: new alphavantageAPI(),
   };
 };
 
