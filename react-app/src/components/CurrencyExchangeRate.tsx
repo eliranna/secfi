@@ -9,12 +9,6 @@ type CurrencyExchangeRateProps = {
   amount: number
 }
 
-type QueryResponse = {
-  loading: Boolean,
-  error: any,
-  data: any
-}
-
 function CurrencyExchangeRate({ fromCurrency, targetCurrency, amount } : CurrencyExchangeRateProps) {
 
   const { loading, error, data } = useQuery(CURRENCY_EXCHANGE_RATE_QUERY, {
