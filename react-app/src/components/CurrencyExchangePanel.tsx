@@ -701,7 +701,7 @@ function CurrencyExchangePanel({ onInput } : CurrencyExchangeRateProps) {
             </Grid>
             <Grid item>
             <form className={classes.root} noValidate autoComplete="off">
-                <TextField id="outlined-basic" label="Amount" variant="outlined" fullWidth onChange={e => handleAmountInputThrottled(e.target.value)}/>
+                <TextField id="outlined-basic" label="Amount" variant="outlined" type="number" defaultValue="1" fullWidth onChange={e => handleAmountInputThrottled(e.target.value)}/>
             </form>
             </Grid>
         </Grid>

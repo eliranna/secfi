@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 type CurrencyExchangeRateCardProps = {
     isLoading: Boolean,
@@ -32,14 +33,14 @@ function CurrencyExchangeRateCard({ isLoading, error, rate, amount } : CurrencyE
   const computeExchangeRate = (rate: number, amount: number): number => {
       return rate * amount
   }
-
-  console.log(rate, amount);
   
   return (
     <Paper className={classes.paper}>
-        <span className={classes.rate}>
-            {computeExchangeRate(rate, amount)}
-        </span>
+        {isLoading ? <CircularProgress /> : (
+            <span className={classes.rate}>
+                {computeExchangeRate(rate, amount)}
+            </span>
+        )}
     </Paper>
   )
 }

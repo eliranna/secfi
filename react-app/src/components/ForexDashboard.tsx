@@ -13,7 +13,7 @@ import CurrencyExchangePanel from "./CurrencyExchangePanel";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
+      flexGrow: 1
     },
     paper: {
       padding: theme.spacing(2),
@@ -38,6 +38,9 @@ const ForexDashboared = () => {
   const [amount, setAmount] = useState(1);
 
   const handleCurrencyExchangePanelInput = ({fromCurrency, targetCurrency, amount}: CurrencyExchangePanelInput) => {
+    if (!fromCurrency || !targetCurrency || !amount) {
+      return 
+    }
     setFromCurrency(fromCurrency);
     setTargetCurrency(targetCurrency);
     setAmount(amount);
