@@ -9,13 +9,18 @@ class alphavantageAPI extends RESTDataSource {
 
   async getExchangeRate(fromCurrency, targetCurrency) {
     return this.get(`${this.baseURL}&from_currency=${fromCurrency}&to_currency=${targetCurrency}`)
-      .then(response => response['Realtime Currency Exchange Rate'])
-      .then(data => ({
-        rate: data['5. Exchange Rate'],
-        lastRefreshed: data['6. Last Refreshed'],
-        bidPrice: data['8. Bid Price'],
-        askPrice: data['9. Ask Price']
-      }))
+      .then(response => {
+        return response['Realtime Currency Exchange Rate']
+      })
+      .then(data => {
+        console.log(data)
+        return {
+          rate: data['5. Exchange Rate'],
+          lastRefreshed: data['6. Last Refreshed'],
+          bidPrice: data['8. Bid Price'],
+          askPrice: data['9. Ask Price']
+        }
+      })
   }
 }
 

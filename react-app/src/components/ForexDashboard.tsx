@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
-import DroneTracker from './DroneTracker';
+import CurrencyExchangeRate from './CurrencyExchangeRate';
 import { useEffect, useState } from 'react';
 import { debounce } from '@material-ui/core';
 
@@ -18,17 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
       margin: 'auto',
       maxWidth: 1200,
-    },
-    image: {
-      width: 128,
-      height: 128,
-    },
-    img: {
-      margin: 'auto',
-      display: 'block',
-      maxWidth: '100%',
-      maxHeight: '100%',
-    },
+    }
   }),
 );  
 
@@ -38,7 +28,7 @@ const ForexDashboared = () => {
 
   const [fromCurrency, setFromCurrency] = useState("");
   const [targetCurrency, setTargetCurrency] = useState("");
-  const [amount, setAmount] = useState(null);
+  const [amount, setAmount] = useState(1);
 
   useEffect(() => {
     console.log(fromCurrency, targetCurrency, amount)
@@ -709,7 +699,7 @@ const ForexDashboared = () => {
             </Grid>
       </Paper>
       <Paper>
-        <DroneTracker fromCurrency={fromCurrency} targetCurrency={targetCurrency}/>
+        <CurrencyExchangeRate fromCurrency={fromCurrency} targetCurrency={targetCurrency} amount={amount}/>
       </Paper>
     </div>
   )
