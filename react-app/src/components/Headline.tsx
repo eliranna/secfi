@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { useTheme } from '@material-ui/core/styles';
 
-export default function Title(props: any) {
+export default function Headline(props: any) {
   return (
-    <Typography component="h1" variant="h6" color="primary" gutterBottom>
+    <Typography component="h1" variant="h1" color="primary" gutterBottom>
       {props.children}
     </Typography>
   );
 }
 
-Title.propTypes = {
+Headline.propTypes = {
   children: PropTypes.node,
 };

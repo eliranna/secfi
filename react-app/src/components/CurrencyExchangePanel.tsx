@@ -643,6 +643,9 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       padding: theme.spacing(2),
       margin: 'auto',
+    },
+    input: {
+      borderColor: "red"
     }
   }),
 );  
@@ -651,7 +654,7 @@ type CurrencyExchangeRateProps = {
     onInput: (values: {
         fromCurrency: string,
         targetCurrency: string,
-        amount: number
+        amount: string
     }) => void
 }
 
@@ -661,7 +664,7 @@ function CurrencyExchangePanel({ onInput } : CurrencyExchangeRateProps) {
 
     const [fromCurrency, setFromCurrency] = useState("");
     const [targetCurrency, setTargetCurrency] = useState("");
-    const [amount, setAmount] = useState(1);
+    const [amount, setAmount] = useState("");
 
     useEffect(() => {
         onInput({
@@ -677,14 +680,14 @@ function CurrencyExchangePanel({ onInput } : CurrencyExchangeRateProps) {
 
   return (
 
-        <Grid container direction="row" spacing={2}> 
+        <Grid container direction="row" justify="center" spacing={2}> 
             <Grid item>
             <Autocomplete
                 id="combo-box-demo"
                 options={currencies}
                 getOptionLabel={(option) => option.name}
                 style={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Targets Currency" variant="outlined" />}
+                renderInput={(params) => <TextField {...params} label="Targets Currency" variant="outlined"/>}
                 onChange={(event, value: any) => {setFromCurrency(value && value.code)}}
             /> 
             </Grid>            
@@ -694,13 +697,13 @@ function CurrencyExchangePanel({ onInput } : CurrencyExchangeRateProps) {
                 options={currencies}
                 getOptionLabel={(option) => option.name}
                 style={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Base Currency" variant="outlined" />}
+                renderInput={(params) => <TextField {...params} label="Base Currency" variant="outlined"/>}
                 onChange={(event, value: any) => setTargetCurrency(value && value.code)}
             />                
             </Grid>
             <Grid item>
             <form className={classes.root} noValidate autoComplete="off">
-                <TextField id="outlined-basic" label="Amount" variant="outlined" type="number" defaultValue="1" fullWidth onChange={e => handleAmountInputThrottled(e.target.value)}/>
+                <TextField id="outlined-basic" label="Amount" variant="outlined" type="number" fullWidth onChange={e => handleAmountInputThrottled(e.target.value)}/>
             </form>
             </Grid>
         </Grid>

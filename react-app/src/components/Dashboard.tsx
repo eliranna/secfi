@@ -24,6 +24,8 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import CurrencyExchangePanel from './CurrencyExchangePanel';
 import CurrencyExchangeRate from './CurrencyExchangeRate';
+import Headline from './Headline';
+import ExchangeRateChart from './ExchangeRateChart';
 
 function Copyright() {
   return (
@@ -45,6 +47,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    backgroundColor: theme.palette.background.default
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -116,7 +119,8 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    boxShadow: 'rgb(78 88 125 / 10%) 0px 1px 54px, rgb(48 66 138 / 7%) 20px 21px 73px'
   },
   fixedHeight: {
     height: 440,
@@ -126,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
 type CurrencyExchangePanelInput = {
   fromCurrency: string,
   targetCurrency: string,
-  amount: number
+  amount: string
 }
 
 export default function Dashboard() {
@@ -142,7 +146,7 @@ export default function Dashboard() {
 
   const [fromCurrency, setFromCurrency] = useState("");
   const [targetCurrency, setTargetCurrency] = useState("");
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState("");
 
   const handleCurrencyExchangePanelInput = ({fromCurrency, targetCurrency, amount}: CurrencyExchangePanelInput) => {
     if (!fromCurrency || !targetCurrency || !amount) {
@@ -156,49 +160,18 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {false && (<AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-      </AppBar>)}
-      {false && (<Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
-      </Drawer>)}
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          
           <Grid container spacing={3}>
-            {/* Recent Orders */}
+            {/* Headline */}
+            <Grid item xs={12}>
+              <Headline>
+                Dicover foreign exchange rates.
+              </Headline>
+            </Grid>                
+            {/* Exchange Rate Panel */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <CurrencyExchangePanel onInput={handleCurrencyExchangePanelInput}/>
@@ -207,19 +180,18 @@ export default function Dashboard() {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart />
+                <ExchangeRateChart fromCurrency={fromCurrency} targetCurrency={targetCurrency}/>
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
+            {/* Exchange Rate */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <CurrencyExchangeRate fromCurrency={fromCurrency} targetCurrency={targetCurrency} amount={amount}/>
+                {fromCurrency && targetCurrency && amount && 
+                    <CurrencyExchangeRate fromCurrency={fromCurrency} targetCurrency={targetCurrency} amount={amount}/>
+                }
               </Paper>
             </Grid>
           </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
         </Container>
       </main>
     </div>

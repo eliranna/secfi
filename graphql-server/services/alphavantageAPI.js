@@ -1,17 +1,16 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
-const { LOCATIONS_MOCK_LIST } = require("./mock");
 
 class alphavantageAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&apikey=QPK789EHS0DB7Q2U`;
+    this.baseURL = `https://www.alphavantage.co/query?apikey=QPK789EHS0DB7Q2U`;
   }
 
   async getExchangeRate(fromCurrency, targetCurrency) {
-    console.log(`${this.baseURL}&from_currency=${fromCurrency}&to_currency=${targetCurrency}`)
-    return this.get(`${this.baseURL}&from_currency=${fromCurrency}&to_currency=${targetCurrency}`)
+    return this.get(`${this.baseURL}&function=CURRENCY_EXCHANGE_RATE&from_currency=${fromCurrency}&to_currency=${targetCurrency}`)
       .then(response => {
-        if (response['Error Message']) throw new Error(response['Error Message'])
+        if (response['Error Message']) 
+          throw new Error(response['Error Message'])
         return response['Realtime Currency Exchange Rate']
       })
       .then(data => {
@@ -25,6 +24,23 @@ class alphavantageAPI extends RESTDataSource {
         return error
       })
   }
+
+  async getDailyExchangeRate(fromCurrency, targetCurrency) {
+    return this.get(`${this.baseURL}&function=FX_DAILY&from_currency=${fromCurrency}&to_currency=${targetCurrency}`)
+      .then(response => {
+        if (response['Error Message']) 
+          throw new Error(response['Error Message'])
+        return response['Time Series FX (Daily)']
+      })
+      .catch(error => {
+        return error
+      })
+  }
+
+
+
+
+  getDailyExchangeRate
 }
 
 module.exports = alphavantageAPI;

@@ -1,9 +1,10 @@
 const exchangeRate = require("./exchangeRate.resolver");
-const locationChanged = require("./location-changed.resolver");
+const exchangeRateDaily = require("./exchangeRateDaily.resolver");
 
 const resolvers = {
   Query: {
     exchangeRate,
+    exchangeRateDaily
   }
 };
 

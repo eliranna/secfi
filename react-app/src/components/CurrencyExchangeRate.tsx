@@ -6,7 +6,7 @@ import { useQuery } from "@apollo/react-hooks";
 type CurrencyExchangeRateProps = {
   fromCurrency: string,
   targetCurrency: string,
-  amount: number
+  amount: string
 }
 
 function CurrencyExchangeRate({ fromCurrency, targetCurrency, amount } : CurrencyExchangeRateProps) {

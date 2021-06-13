@@ -10,7 +10,7 @@ type CurrencyExchangeRateCardProps = {
     currency: string,
     error: any,
     rate: number,
-    amount: number
+    amount: string
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
       maxWidth: 1200,
     },
     rateNumber: {
-        fontSize: 90,
+        fontSize: 48,
+        color: theme.palette.secondary.main
     },
     currencyLabel: {
       //textAlign: 'center',
@@ -45,7 +46,7 @@ function CurrencyExchangeRateCard({ isLoading, error, currency, rate, amount } :
       <Grid container direction="column" justify="center" alignItems="center">
         <Grid item className={classes.rateNumber}>
           <span>
-              {computeRoundedExchangeRate(rate, amount)}
+              {computeRoundedExchangeRate(rate, Number.parseFloat(amount))}
           </span>  
         </Grid>
         <Grid item className={classes.currencyLabel}>
