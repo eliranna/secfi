@@ -4,8 +4,8 @@ import { CURRENCY_EXCHANGE_RATE_QUERY } from "../queries/currencyExchangeRate";
 import { useQuery } from "@apollo/react-hooks";
 
 type CurrencyExchangeRateProps = {
-  fromCurrency: String,
-  targetCurrency: String,
+  fromCurrency: string,
+  targetCurrency: string,
   amount: number
 }
 
@@ -19,7 +19,12 @@ function CurrencyExchangeRate({ fromCurrency, targetCurrency, amount } : Currenc
   });
 
   return (
-    <CurrencyExchangeRateCard isLoading={loading} error={error} rate={data ? data.exchangeRate.rate : null} amount={amount}/> 
+    <CurrencyExchangeRateCard 
+      isLoading={loading} 
+      error={error}
+      currency={targetCurrency} 
+      rate={data ? data.exchangeRate.rate : null} 
+      amount={amount}/> 
   )
 }
 

@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       padding: theme.spacing(2),
       margin: 'auto',
-      maxWidth: 1200,
+    
     }
   }),
 );  
@@ -47,12 +47,16 @@ const ForexDashboared = () => {
   }
 
   return (
-    <div className={classes.root}>
+    <Grid container direction="column" spacing={2}> 
       <CurrencyExchangePanel onInput={handleCurrencyExchangePanelInput}/>
-      <Paper>
+      <Grid container direction="row" spacing={2}>
         <CurrencyExchangeRate fromCurrency={fromCurrency} targetCurrency={targetCurrency} amount={amount}/>
-      </Paper>
-    </div>
+        <div>
+          graph
+        </div>
+      </Grid>
+      
+    </Grid>
   )
 };
 

@@ -1,12 +1,12 @@
 import React from "react";
 import apollo from "./apolloSetup";
 import { ApolloProvider } from "@apollo/react-hooks";
-import ForexDashboard from "./components/ForexDashboard";
+import Dashboard from "./components/Dashboard";
 
 const App = () => (
   <ApolloProvider client={apollo}>
     <React.Fragment>
-      <ForexDashboard/>
+      <Dashboard/>
     </React.Fragment>
   </ApolloProvider>
 );

@@ -643,7 +643,6 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       padding: theme.spacing(2),
       margin: 'auto',
-      maxWidth: 1200,
     }
   }),
 );  
@@ -677,7 +676,7 @@ function CurrencyExchangePanel({ onInput } : CurrencyExchangeRateProps) {
     }, 1000);
 
   return (
-    <Paper className={classes.paper}>
+
         <Grid container direction="row" spacing={2}> 
             <Grid item>
             <Autocomplete
@@ -705,7 +704,6 @@ function CurrencyExchangePanel({ onInput } : CurrencyExchangeRateProps) {
             </form>
             </Grid>
         </Grid>
-    </Paper>
   )
 }
 
