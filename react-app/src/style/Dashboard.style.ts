@@ -23,7 +23,15 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     boxShadow: 'rgb(78 88 125 / 10%) 0px 1px 54px, rgb(48 66 138 / 7%) 20px 21px 73px'
   },
-  fixedHeight: {
-    height: 440,
+  paperHeight: {
+    height: 440
+  },
+  panelHeight: {
+    height: 200
+  },
+  intro: {
+    marginTop: 50,
+    marginBottom: 50
   }
+
 }));

@@ -7,16 +7,18 @@ import Grid from '@material-ui/core/Grid';
 import useStyles from '../style/ExchangeRateCard.style';
 
 import RateExchangeErrorMessage from './RateExchangeErrorMessage';
+import { Chip } from "@material-ui/core";
 
 type ExchangeRateCardProps = {
     isLoading: Boolean,
     currency: string,
     error: any,
     rate: string,
-    amount: string
+    amount: string,
+    live: boolean
 }
 
-function ExchangeRateCard({ isLoading, error, currency, rate, amount } : ExchangeRateCardProps) {
+function ExchangeRateCard({ isLoading, error, currency, rate, amount, live } : ExchangeRateCardProps) {
 
   const classes = useStyles();
 
@@ -27,12 +29,17 @@ function ExchangeRateCard({ isLoading, error, currency, rate, amount } : Exchang
   return isLoading ? <CircularProgress/> : (
     error ? <RateExchangeErrorMessage/> : (
       <Grid container direction="column" justify="center" alignItems="center">
+        {live && 
+          <Grid>
+            <Chip variant="outlined" color="primary" size="small" label="live"/>
+          </Grid>
+        }
         <Grid item className={classes.rateNumber}>
           <span>
               {computeRoundedExchangeRate(Number.parseFloat(rate), Number.parseFloat(amount))}
           </span>  
         </Grid>
-        <Grid item className={classes.currencyLabel}>
+        <Grid item>
           <span>
               {currency}
           </span>

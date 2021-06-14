@@ -7,14 +7,12 @@ const colors = {
 }
 
 export const theme = createMuiTheme({
-  primary: "#90caf9",
-  secondary: "#4364e8",
   palette: {
     primary: {
-      main: colors.DARK,
+      main: colors.BLUE,
     },
     secondary: {
-      main: colors.BLUE
+      main: colors.DARK
     }
   },
   typography: {

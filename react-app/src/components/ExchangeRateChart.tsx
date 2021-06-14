@@ -24,7 +24,7 @@ function ExchangeRateChart({ fromCurrency, targetCurrency, limit } : ExchangeRat
   });
 
   return (
-    <DailyRateChart data={data && data.exchangeRateDaily}/>
+    <DailyRateChart isLoading={loading} error={error} data={data && data.exchangeRateDaily}/>
   )
 }
 

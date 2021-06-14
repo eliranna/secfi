@@ -4,20 +4,18 @@ import ExchangeRateCard from './ExchangeRateCard';
 import { CURRENCY_EXCHANGE_RATE_QUERY } from "../queries/currencyExchangeRate";
 import { useQuery } from "@apollo/react-hooks";
 
-type CurrencyExchangeRateProps = {
-  fromCurrency: string,
-  targetCurrency: string,
-  amount: string
-}
+import {CurrencyExchangePanelInput} from '../types/CurrencyExchangePanel.types';
 
-function CurrencyExchangeRate({ fromCurrency, targetCurrency, amount } : CurrencyExchangeRateProps) {
+import {LIVE_POLLING_RATE} from '../constants/general';
+
+function CurrencyExchangeRate({ fromCurrency, targetCurrency, amount, live } : CurrencyExchangePanelInput) {
 
   const { loading, error, data } = useQuery(CURRENCY_EXCHANGE_RATE_QUERY, {
     variables: {
       fromCurrency,
       targetCurrency
     },
-    //pollInterval: 500
+    pollInterval: live ? LIVE_POLLING_RATE : undefined
   });
 
   return (
@@ -26,7 +24,8 @@ function CurrencyExchangeRate({ fromCurrency, targetCurrency, amount } : Currenc
       error={error}
       currency={targetCurrency} 
       rate={data ? data.exchangeRate.rate : null} 
-      amount={amount}/> 
+      amount={amount}
+      live={live}/> 
   )
 }
 

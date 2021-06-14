@@ -14,13 +14,15 @@ class alphavantageAPI extends RESTDataSource {
   }
 
   async getExchangeRate(fromCurrency, targetCurrency) {
-    return this.get(`${this.baseURL}&function=${API_FUNCTIONS.EXCHANGE_RATE}&from_currency=${fromCurrency}&to_currency=${targetCurrency}`)
+    return this.get(`${this.baseURL}
+                      &function=${API_FUNCTIONS.EXCHANGE_RATE}
+                      &from_currency=${fromCurrency}
+                      &to_currency=${targetCurrency}`)
       .then(response => {
         if (response['Error Message']) 
           throw new Error(response['Error Message'])
         return response['Realtime Currency Exchange Rate']
-      })
-      .then(data => {
+      }).then(data => {
         return {
           rate: data['5. Exchange Rate'],
           lastRefreshed: data['6. Last Refreshed'],
@@ -33,7 +35,10 @@ class alphavantageAPI extends RESTDataSource {
   }
 
   async getDailyExchangeRate(fromCurrency, targetCurrency, limit) {
-    return this.get(`${this.baseURL}&function=${API_FUNCTIONS.DAILY_EXCHANGE_RATE}&from_symbol=${fromCurrency}&to_symbol=${targetCurrency}`)
+    return this.get(`${this.baseURL}
+                      &function=${API_FUNCTIONS.DAILY_EXCHANGE_RATE}
+                      &from_symbol=${fromCurrency}
+                      &to_symbol=${targetCurrency}`)
       .then(response => {
         if (response['Error Message']) 
           throw new Error(response['Error Message'])

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -10,37 +9,52 @@ import useStyles from '../style/Dashboard.style';
  
 import ExchangePanel from './ExchangePanel';
 import ExchangeRate from './ExchangeRate';
-import Headline from './Headline';
+import Headline from './shared/Headline';
 import ExchangeRateChart from './ExchangeRateChart';
 
-const DAILY_RATE_CHART_LIMIT = 30;
-
-type CurrencyExchangePanelInput = {
-  fromCurrency: string,
-  targetCurrency: string,
-  amount: string
-}
+import {CurrencyExchangePanelHandler} from '../types/CurrencyExchangePanel.types';
+import {DAILY_RATE_CHART_LIMIT} from '../constants/general';
 
 export default function Dashboard() {
 
   const classes = useStyles();
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const exchangeRateChartPaper = clsx(classes.paper, classes.paperHeight);
+  const exchangeRatePaper = clsx(classes.paper, classes.paperHeight);
+  const panelHeightPaper = clsx(classes.paper, classes.panelHeight);
 
   const [fromCurrency, setFromCurrency] = useState("");
   const [targetCurrency, setTargetCurrency] = useState("");
   const [amount, setAmount] = useState("");
+  const [live, setLive] = useState(false);
 
-  const handleExchangePanelInput = ({
+  const handleExchangePanelInput: CurrencyExchangePanelHandler = ({
     fromCurrency, 
     targetCurrency, 
-    amount}: CurrencyExchangePanelInput) => {
-      if (!fromCurrency || !targetCurrency || !amount) {
-        return 
+    amount,
+    live
+  }) => {
+      if (fromCurrency && targetCurrency && amount) {
+        setFromCurrency(fromCurrency);
+        setTargetCurrency(targetCurrency);
+        setAmount(amount);
+        setLive(live);
       }
-      setFromCurrency(fromCurrency);
-      setTargetCurrency(targetCurrency);
-      setAmount(amount);
   }
+
+  const exchangeRateDisplay = (
+    <Grid container spacing={3}>
+      <Grid item xs={12} md={8} lg={9}>
+        <Paper className={exchangeRateChartPaper}>
+          <ExchangeRateChart fromCurrency={fromCurrency} targetCurrency={targetCurrency} limit={DAILY_RATE_CHART_LIMIT}/>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={exchangeRatePaper}>
+          <ExchangeRate fromCurrency={fromCurrency} targetCurrency={targetCurrency} amount={amount} live={live}/>
+        </Paper>
+      </Grid>
+    </Grid>    
+  )
 
   return (
     <div className={classes.root}>
@@ -49,30 +63,19 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <Headline>
-                Dicover foreign exchange rates.
-              </Headline>
+              <div className={classes.intro}>
+                <Headline>
+                  Dicover foreign exchange rates.
+                </Headline>
+              </div>
             </Grid>                
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
+              <Paper className={panelHeightPaper}>
                 <ExchangePanel onInput={handleExchangePanelInput}/>
-              </Paper>
-            </Grid>              
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-              {fromCurrency && targetCurrency && amount && 
-                <ExchangeRateChart fromCurrency={fromCurrency} targetCurrency={targetCurrency} limit={DAILY_RATE_CHART_LIMIT}/>
-              } 
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                {fromCurrency && targetCurrency && amount && 
-                    <ExchangeRate fromCurrency={fromCurrency} targetCurrency={targetCurrency} amount={amount}/>
-                }
               </Paper>
             </Grid>
           </Grid>
+            {fromCurrency && targetCurrency && amount && exchangeRateDisplay}             
         </Container>
       </main>
     </div>
