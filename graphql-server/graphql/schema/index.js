@@ -4,7 +4,7 @@ const typeDefs = gql`
 
   type Query {
     exchangeRate(fromCurrency: String!, targetCurrency: String!): Rate
-    exchangeRateDaily(fromCurrency: String!, targetCurrency: String!): [DailyRate]
+    exchangeRateDaily(fromCurrency: String!, targetCurrency: String!, limit: Int): [DailyRate]
   }
 
   type Rate {
@@ -12,6 +12,11 @@ const typeDefs = gql`
   }
 
   type DailyRate {
+    day: String,
+    values: DailyRateValues
+  }
+
+  type DailyRateValues {
     open: String,
     high: String,
     low: String,

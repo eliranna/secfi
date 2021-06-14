@@ -1,5 +1,5 @@
-const exchangeRateDaily = async (_source, { fromCurrency, targetCurrency }, { dataSources }) => {
-  const response = await dataSources.alphavantageAPI.getDailyExchangeRate(fromCurrency, targetCurrency);
+const exchangeRateDaily = async (_source, { fromCurrency, targetCurrency, limit }, { dataSources }) => {
+  const response = await dataSources.alphavantageAPI.getDailyExchangeRate(fromCurrency, targetCurrency, limit);
   return response;
 };
 

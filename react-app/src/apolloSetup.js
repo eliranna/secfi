@@ -5,12 +5,12 @@ import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
-const wsLink = new WebSocketLink({
-  uri: `ws://localhost:4000/graphql`,
-  options: {
-    reconnect: true,
-  },
-});
+//const wsLink = new WebSocketLink({
+//  uri: `ws://localhost:4000/graphql`,
+//  options: {
+//    reconnect: true,
+//  },
+//});
 
 const httpLink = new HttpLink({
   uri: "http://localhost:4000/graphql",
@@ -25,11 +25,11 @@ const link = split(
       definition.operation === "subscription"
     );
   },
-  wsLink,
+  //wsLink,
   httpLink
 );
 
 export default new ApolloClient({
   cache: new InMemoryCache(),
-  link,
+  link: httpLink,
 });

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import CurrencyExchangeRateCard from './CurrencyExchangeRateCard';
 import { CURRENCY_EXCHANGE_RATE_QUERY } from "../queries/currencyExchangeRate";
 import { useQuery } from "@apollo/react-hooks";
@@ -15,7 +16,8 @@ function CurrencyExchangeRate({ fromCurrency, targetCurrency, amount } : Currenc
     variables: {
       fromCurrency,
       targetCurrency
-    }
+    },
+    //pollInterval: 500
   });
 
   return (
@@ -27,5 +29,11 @@ function CurrencyExchangeRate({ fromCurrency, targetCurrency, amount } : Currenc
       amount={amount}/> 
   )
 }
+
+CurrencyExchangeRate.propTypes = {
+  fromCurrency: PropTypes.string,
+  targetCurrency: PropTypes.string,
+  amount: PropTypes.string
+};
 
 export default CurrencyExchangeRate;

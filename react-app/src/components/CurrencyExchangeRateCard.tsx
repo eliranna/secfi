@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -9,7 +10,7 @@ type CurrencyExchangeRateCardProps = {
     isLoading: Boolean,
     currency: string,
     error: any,
-    rate: number,
+    rate: string,
     amount: string
 }
 
@@ -46,7 +47,7 @@ function CurrencyExchangeRateCard({ isLoading, error, currency, rate, amount } :
       <Grid container direction="column" justify="center" alignItems="center">
         <Grid item className={classes.rateNumber}>
           <span>
-              {computeRoundedExchangeRate(rate, Number.parseFloat(amount))}
+              {computeRoundedExchangeRate(Number.parseFloat(rate), Number.parseFloat(amount))}
           </span>  
         </Grid>
         <Grid item className={classes.currencyLabel}>
@@ -58,5 +59,13 @@ function CurrencyExchangeRateCard({ isLoading, error, currency, rate, amount } :
     )
   )
 }
+
+CurrencyExchangeRateCard.propTypes = {
+  isLoading: PropTypes.bool,
+  currency: PropTypes.string,
+  error: PropTypes.object,
+  rate: PropTypes.string,
+  amount: PropTypes.string
+};
 
 export default CurrencyExchangeRateCard;
