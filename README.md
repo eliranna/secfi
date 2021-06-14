@@ -1,23 +1,22 @@
-# realtime-drone-tracking-example
-
-This is a sample code created for [this blog post].
-
-[this blog post]: https://thehardcoded.blog/chasing-drones-with-graphql
+# realtime FOREX exchange dashboard
 
 ### Description
-This sample outlines an e2e implementation of an Real-time Drone-tracking application using MQTT, GraphQL, Apollo Server, Apollo Client, Node.js and React. 
+This sample outlines a full-stack implementation of a (near) Real-time FOREX exchange application using GraphQL, Apollo Server, Apollo Client, Node.js, React, TypeScript and Material-UI. 
 
 ## How to run
 
-#### Install the Broker app
+#### Install & run the server
 ```
+cd graphql-server
 npm i
+node app.js
 ```
 
-
-#### Run the MQTT Broker
+#### Install the React application
 ```
-node mqtt-broker.js
+cd react-app
+npm i
+npm run start
 ```
 
 #### Run the MQTT publisher
