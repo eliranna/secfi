@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
+import SwapHorizontalCircleIcon from '@material-ui/icons/SwapHorizontalCircle';
 
 import { useEffect, useState } from 'react';
 import { Box, debounce, FormControlLabel, FormGroup, Switch } from '@material-ui/core';
@@ -10,15 +11,11 @@ import { Box, debounce, FormControlLabel, FormGroup, Switch } from '@material-ui
 import currencies from '../utils/currencies';
 import { CurrencyExchangePanelHandler } from "../types/CurrencyExchangePanel.types";
 
-import useStyles from '../style/ExchangePanel.style';
-
 type ExchangeRateProps = {
     onInput: CurrencyExchangePanelHandler
 }
 
 function ExchangePanel({ onInput } : ExchangeRateProps) {
-
-    const classes = useStyles();
 
     const [fromCurrency, setFromCurrency] = useState("");
     const [targetCurrency, setTargetCurrency] = useState("");
@@ -53,8 +50,8 @@ function ExchangePanel({ onInput } : ExchangeRateProps) {
                         style={{ width: 400 }}
                         renderInput={(params) => <TextField {...params} label="Targets Currency" variant="outlined"/>}
                         onChange={(event, value: any) => {setFromCurrency(value && value.code)}}
-                    /> 
-                </Grid>            
+                    />
+                </Grid>          
                 <Grid item>
                     <Autocomplete
                         id="combo-box-demo"

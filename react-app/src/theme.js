@@ -21,8 +21,7 @@ export const theme = createMuiTheme({
       fontSize: "48px",
       fontWeight: "bold"
     },
-  },
-  //custom: {}
+  }
 });
 
 export default theme;
