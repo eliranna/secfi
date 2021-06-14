@@ -1,10 +1,13 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-
   type Query {
     exchangeRate(fromCurrency: String!, targetCurrency: String!): Rate
-    exchangeRateDaily(fromCurrency: String!, targetCurrency: String!, limit: Int): [DailyRate]
+    exchangeRateDaily(
+      fromCurrency: String!
+      targetCurrency: String!
+      limit: Int
+    ): [DailyRate]
   }
 
   type Rate {
@@ -12,17 +15,16 @@ const typeDefs = gql`
   }
 
   type DailyRate {
-    day: String,
+    day: String
     values: DailyRateValues
   }
 
   type DailyRateValues {
-    open: String,
-    high: String,
-    low: String,
+    open: String
+    high: String
+    low: String
     close: String
   }
-
 `;
 
 module.exports = typeDefs;

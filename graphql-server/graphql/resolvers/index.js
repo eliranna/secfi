@@ -4,8 +4,8 @@ const exchangeRateDaily = require("./exchangeRateDaily.resolver");
 const resolvers = {
   Query: {
     exchangeRate,
-    exchangeRateDaily
-  }
+    exchangeRateDaily,
+  },
 };
 
 module.exports = resolvers;
