@@ -18,3 +18,13 @@ cd react-app
 npm i
 npm run start
 ```
+
+## Architecture
+
+- The dashboard holds the main state. The ExchangePanel updates this state, as the ExchangeRate and the ExchangeRateChart components consumes it. 
+- The ExchangePanel component holds an inner state, which allows debouncing and possibly other inner UI logic. 
+- The ExchangeRate and ExchangeRateChart components are both designed by the smart/dumb components pattern: The container component executes GraphQL queries, while the contained component is presentational. 
+- The GraphQL queries are handeled using Apollo react hooks API. 
+- The usage of Redux in 
+
+
