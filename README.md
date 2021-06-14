@@ -36,7 +36,7 @@ npm run start
 - The service retrive data by calling an external API and re-arrange it.
 
 ## Discussion
-For this implementation, I has to choose between two possible approches:
+For this implementation, I had to choose between two possible approches:
 
 (a) RESTfull API + Redux-based client
 (b) GraphQL-based API + Apollo-based client + React hooks
