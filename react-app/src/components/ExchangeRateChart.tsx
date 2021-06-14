@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import CurrencyExchangeRateCard from './CurrencyExchangeRateCard';
-import { CURRENCY_EXCHANGE_RATE_DAILY_QUERY } from "../queries/currencyExchangeRateDaily";
+
 import { useQuery } from "@apollo/react-hooks";
+
+import { CURRENCY_EXCHANGE_RATE_DAILY_QUERY } from "../queries/currencyExchangeRateDaily";
 import DailyRateChart from "./DailyRateChart";
 
 type ExchangeRateChartProps = {
@@ -21,8 +22,6 @@ function ExchangeRateChart({ fromCurrency, targetCurrency, limit } : ExchangeRat
     },
     //pollInterval: 500
   });
-
-  console.log(data)
 
   return (
     <DailyRateChart data={data && data.exchangeRateDaily}/>

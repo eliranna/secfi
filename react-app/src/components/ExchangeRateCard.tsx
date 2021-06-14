@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
+
+import useStyles from '../style/ExchangeRateCard.style';
+
 import RateExchangeErrorMessage from './RateExchangeErrorMessage';
 
-type CurrencyExchangeRateCardProps = {
+type ExchangeRateCardProps = {
     isLoading: Boolean,
     currency: string,
     error: any,
@@ -14,27 +16,7 @@ type CurrencyExchangeRateCardProps = {
     amount: string
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      margin: 'auto',
-      maxWidth: 1200,
-    },
-    rateNumber: {
-        fontSize: 48,
-        color: theme.palette.secondary.main
-    },
-    currencyLabel: {
-      //textAlign: 'center',
-    }
-  }),
-);
-
-function CurrencyExchangeRateCard({ isLoading, error, currency, rate, amount } : CurrencyExchangeRateCardProps) {
+function ExchangeRateCard({ isLoading, error, currency, rate, amount } : ExchangeRateCardProps) {
 
   const classes = useStyles();
 
@@ -60,7 +42,7 @@ function CurrencyExchangeRateCard({ isLoading, error, currency, rate, amount } :
   )
 }
 
-CurrencyExchangeRateCard.propTypes = {
+ExchangeRateCard.propTypes = {
   isLoading: PropTypes.bool,
   currency: PropTypes.string,
   error: PropTypes.object,
@@ -68,4 +50,4 @@ CurrencyExchangeRateCard.propTypes = {
   amount: PropTypes.string
 };
 
-export default CurrencyExchangeRateCard;
+export default ExchangeRateCard;

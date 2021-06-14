@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import CurrencyExchangeRateCard from './CurrencyExchangeRateCard';
+import ExchangeRateCard from './ExchangeRateCard';
 import { CURRENCY_EXCHANGE_RATE_QUERY } from "../queries/currencyExchangeRate";
 import { useQuery } from "@apollo/react-hooks";
 
@@ -21,7 +21,7 @@ function CurrencyExchangeRate({ fromCurrency, targetCurrency, amount } : Currenc
   });
 
   return (
-    <CurrencyExchangeRateCard 
+    <ExchangeRateCard 
       isLoading={loading} 
       error={error}
       currency={targetCurrency} 

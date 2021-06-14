@@ -1,13 +1,20 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
 
+const API_KEY = "QPK789EHS0DB7Q2U"
+
+const API_FUNCTIONS = {
+  EXCHANGE_RATE: "CURRENCY_EXCHANGE_RATE",
+  DAILY_EXCHANGE_RATE: "FX_DAILY"
+}
+
 class alphavantageAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = `https://www.alphavantage.co/query?apikey=QPK789EHS0DB7Q2U`;
+    this.baseURL = `https://www.alphavantage.co/query?apikey=${API_KEY}`;
   }
 
   async getExchangeRate(fromCurrency, targetCurrency) {
-    return this.get(`${this.baseURL}&function=CURRENCY_EXCHANGE_RATE&from_currency=${fromCurrency}&to_currency=${targetCurrency}`)
+    return this.get(`${this.baseURL}&function=${API_FUNCTIONS.EXCHANGE_RATE}&from_currency=${fromCurrency}&to_currency=${targetCurrency}`)
       .then(response => {
         if (response['Error Message']) 
           throw new Error(response['Error Message'])
@@ -26,7 +33,7 @@ class alphavantageAPI extends RESTDataSource {
   }
 
   async getDailyExchangeRate(fromCurrency, targetCurrency, limit) {
-    return this.get(`${this.baseURL}&function=FX_DAILY&from_symbol=${fromCurrency}&to_symbol=${targetCurrency}`)
+    return this.get(`${this.baseURL}&function=${API_FUNCTIONS.DAILY_EXCHANGE_RATE}&from_symbol=${fromCurrency}&to_symbol=${targetCurrency}`)
       .then(response => {
         if (response['Error Message']) 
           throw new Error(response['Error Message'])
@@ -44,7 +51,6 @@ class alphavantageAPI extends RESTDataSource {
             } 
           })
         }
-        console.log(limit)
         return parsedData.slice(0, limit)
       })
       .catch(error => {

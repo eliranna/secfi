@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
@@ -10,19 +9,7 @@ import { debounce } from '@material-ui/core';
 
 import currencies from '../utils/currencies';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      margin: 'auto',
-    },
-  }),
-);  
-
-type CurrencyExchangeRateProps = {
+type ExchangeRateProps = {
     onInput: (values: {
         fromCurrency: string,
         targetCurrency: string,
@@ -30,9 +17,7 @@ type CurrencyExchangeRateProps = {
     }) => void
 }
 
-function CurrencyExchangePanel({ onInput } : CurrencyExchangeRateProps) {
-
-    const classes = useStyles();
+function ExchangePanel({ onInput } : ExchangeRateProps) {
 
     const [fromCurrency, setFromCurrency] = useState("");
     const [targetCurrency, setTargetCurrency] = useState("");
@@ -73,7 +58,7 @@ function CurrencyExchangePanel({ onInput } : CurrencyExchangeRateProps) {
             />                
             </Grid>
             <Grid item>
-            <form className={classes.root} noValidate autoComplete="off">
+            <form noValidate autoComplete="off">
                 <TextField id="outlined-basic" label="Amount" variant="outlined" type="number" fullWidth onChange={e => handleAmountInputThrottled(e.target.value)}/>
             </form>
             </Grid>
@@ -81,8 +66,8 @@ function CurrencyExchangePanel({ onInput } : CurrencyExchangeRateProps) {
   )
 }
 
-CurrencyExchangePanel.propTypes = {
+ExchangePanel.propTypes = {
   onInput: PropTypes.func
 };
 
-export default CurrencyExchangePanel;
+export default ExchangePanel;
