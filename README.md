@@ -21,10 +21,18 @@ npm run start
 
 ## Architecture
 
+#### Frontend (React + TypeScript + Apollo Client + Material UI)
+
 - The dashboard holds the main state. The ExchangePanel updates this state, as the ExchangeRate and the ExchangeRateChart components consumes it. 
 - The ExchangePanel component holds an inner state, which allows debouncing and possibly other inner UI logic. 
 - The ExchangeRate and ExchangeRateChart components are both designed by the smart/dumb components pattern: The container component executes GraphQL queries, while the contained component is presentational. 
 - The GraphQL queries are handeled using Apollo react hooks API. 
-- The usage of Redux in 
+- Near Realtime monitoring is done using interval polling. 
+
+#### Backend (NodeJS + Apollo Server)
+
+- The GraphQL schema exposes two Queries, one for quering the current Exchange rate and the other for quering the chart data.
+- Reduces retrive data by calling a specific service. 
+- The service retrive data by calling an external API and re-arrange it.
 
 
