@@ -35,4 +35,17 @@ npm run start
 - Reduces retrive data by calling a specific service. 
 - The service retrive data by calling an external API and re-arrange it.
 
+## Discussion
+For this implementation, I has to choose between two possible approches:
+
+(a) RESTfull API + Redux-based client
+(b) GraphQL-based API + Apollo-based client + React hooks
+
+I have choosen option (b) for several reasons: 
+
+(1) GraphQL-based solutions allows fetching of exact portions of data, which prevents possible underfetching and overfetching. 
+(2) GraphQL-based solutions strongly decouples between the API implementation and client. This allows faster developemnt process for disturbuted teams. 
+(3) Less boilerplate.
+
+
 
