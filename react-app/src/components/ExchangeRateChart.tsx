@@ -24,7 +24,7 @@ function ExchangeRateChart({
         fromCurrency,
         targetCurrency,
         limit,
-      }
+      },
     }
   );
 

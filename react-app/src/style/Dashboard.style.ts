@@ -14,22 +14,6 @@ export default makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    boxShadow:
-      "rgb(78 88 125 / 10%) 0px 1px 54px, rgb(48 66 138 / 7%) 20px 21px 73px",
-  },
-  paperHeight: {
-    height: 440,
-  },
-  panelHeight: {
-    height: 200,
-  },
   intro: {
     marginTop: 50,
     marginBottom: 50,

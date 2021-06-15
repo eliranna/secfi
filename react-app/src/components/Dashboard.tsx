@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 
 import useStyles from "../style/Dashboard.style";
 
@@ -14,12 +12,10 @@ import ExchangeRateChart from "./ExchangeRateChart";
 
 import { CurrencyExchangePanelHandler } from "../types/CurrencyExchangePanel.types";
 import { DAILY_RATE_CHART_LIMIT } from "../constants/general";
+import Card from "./shared/Card";
 
 export default function Dashboard() {
   const classes = useStyles();
-  const exchangeRateChartPaper = clsx(classes.paper, classes.paperHeight);
-  const exchangeRatePaper = clsx(classes.paper, classes.paperHeight);
-  const panelHeightPaper = clsx(classes.paper, classes.panelHeight);
 
   const [fromCurrency, setFromCurrency] = useState("");
   const [targetCurrency, setTargetCurrency] = useState("");
@@ -43,23 +39,23 @@ export default function Dashboard() {
   const exchangeRateDisplay = (
     <Grid container spacing={3}>
       <Grid item xs={12} md={8} lg={9}>
-        <Paper className={exchangeRateChartPaper}>
+        <Card height="440px">
           <ExchangeRateChart
             fromCurrency={fromCurrency}
             targetCurrency={targetCurrency}
             limit={DAILY_RATE_CHART_LIMIT}
           />
-        </Paper>
+        </Card>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
-        <Paper className={exchangeRatePaper}>
+        <Card height="440px">
           <ExchangeRate
             fromCurrency={fromCurrency}
             targetCurrency={targetCurrency}
             amount={amount}
             live={live}
           />
-        </Paper>
+        </Card>
       </Grid>
     </Grid>
   );
@@ -76,9 +72,9 @@ export default function Dashboard() {
               </div>
             </Grid>
             <Grid item xs={12}>
-              <Paper className={panelHeightPaper}>
+              <Card height="200px">
                 <ExchangePanel onInput={handleExchangePanelInput} />
-              </Paper>
+              </Card>
             </Grid>
           </Grid>
           {fromCurrency && targetCurrency && amount && exchangeRateDisplay}

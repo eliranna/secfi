@@ -60,7 +60,7 @@ function ExchangePanel({ onInput }: ExchangeRateProps) {
               onChange={(e) => handleAmountInputThrottled(e.target.value)}
             />
           </form>
-        </Grid>        
+        </Grid>
         <Grid item>
           <Autocomplete
             id="combo-box-demo"
@@ -68,11 +68,7 @@ function ExchangePanel({ onInput }: ExchangeRateProps) {
             getOptionLabel={(option) => option.name}
             style={{ width: 400 }}
             renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Base Currency"
-                variant="outlined"
-              />
+              <TextField {...params} label="Base Currency" variant="outlined" />
             )}
             onChange={(event, value: any) => {
               setFromCurrency(value && value.code);
@@ -86,7 +82,11 @@ function ExchangePanel({ onInput }: ExchangeRateProps) {
             getOptionLabel={(option) => option.name}
             style={{ width: 400 }}
             renderInput={(params) => (
-              <TextField {...params} label="Target Currency" variant="outlined" />
+              <TextField
+                {...params}
+                label="Target Currency"
+                variant="outlined"
+              />
             )}
             onChange={(event, value: any) =>
               setTargetCurrency(value && value.code)
