@@ -21,6 +21,8 @@ function CurrencyExchangeRate({
     },
     pollInterval: live ? LIVE_POLLING_RATE : undefined,
   });
+  console.log(data)
+  console.log(error)
 
   return (
     <ExchangeRateCard
