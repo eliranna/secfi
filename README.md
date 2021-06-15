@@ -36,7 +36,7 @@ I have chosen option (2) for several reasons: 
 
 This is a description of the design: 
 
-Frontend (React + TypeScript + Apollo Client + Material UI)
+###Frontend (React + TypeScript + Apollo Client + Material UI)
 
 The dashboard holds the main state. The ExchangePanel updates this state, as the ExchangeRate and the ExchangeRateChart components consume it.
 The ExchangePanel component holds an inner state, which allows debouncing and possibly other inner UI logic.
@@ -44,7 +44,7 @@ The ExchangeRate and ExchangeRateChart components are both designed by the patte
 The GraphQL queries are handled using Apollo react hooks API.
 Near real-time monitoring is done using interval polling.
 
-Backend (NodeJS + Apollo Server)
+###Backend (NodeJS + Apollo Server)
 
 The GraphQL schema exposes two Queries, one for querying the current Exchange rate and the other for querying the chart data.
 Reduces retrieve data by calling a specific service.
